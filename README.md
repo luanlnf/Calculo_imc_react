@@ -10,7 +10,7 @@ Este é um projeto simples desenvolvido com React para calcular o Índice de Mas
 
 ## 🖼️ Demonstração
 
-![Demonstração do projeto]((https://calculo-imc-react-luanlnf.vercel.app/))
+![Demonstração do projeto][https://calculo-imc-react-luanlnf.vercel.app/]
 
 ## 🛠️ Tecnologias Utilizadas
 
