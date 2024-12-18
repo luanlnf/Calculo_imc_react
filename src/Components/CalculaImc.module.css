@@ -1,0 +1,64 @@
+.baixoPeso {
+    background-color: #0be4e4; 
+    color: #000;
+}
+
+.pesoNormal {
+    background-color: #4CAF50; 
+    color: #000;
+}
+
+.sobrepeso {
+    background-color: #FFB74D; 
+    color: #000;
+}
+
+.obesidadeI {
+    background-color: #f82323; 
+    color: #000;
+}
+
+.obesidadeII {
+    background-color: #e22323; 
+    color: #000;
+}
+
+.obesidadeIII {
+    background-color: #aa2d2d; 
+    color: #000;
+}
+.classificacaoAtiva {
+    opacity: 0.6; 
+    font-size: 1.2rem; 
+    font-style: italic; 
+    transition: opacity 0.3s ease; 
+    text-shadow: 1px 1.5px 1.5px rgb(255, 251, 251);
+    width: 500px;
+    margin: 20px auto; 
+    text-align: center; 
+    border-radius: 8px;
+}
+
+
+ul {
+    list-style: none; /* Remove os marcadores de lista */
+    padding: 0; /* Remove o espaçamento interno */
+    margin: 0 auto; /* Centraliza horizontalmente a lista */
+    max-width: 600px; /* Define a largura máxima da lista */
+    width: 100%; /* Garante que ela se ajuste ao tamanho da tela menor */
+    text-align: center; /* Garante que o conteúdo da lista esteja centralizado */
+}
+
+ul li {
+    padding: 8px;
+    margin-bottom: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para o visual */
+}
+
+ul li p {
+    padding: 0.5em;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 1px 1.5px 1.5px rgb(252, 246, 246);
+}

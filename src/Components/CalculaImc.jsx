@@ -1,0 +1,79 @@
+import styles from './CalculaImc.module.css'
+
+const IMCCalculado = ({ altura, peso }) => {
+    const verificaCampos = () => {
+        if (!altura || !peso || altura === '' || peso === '') {
+            return `Adicione valores aos dois campos!`
+        }
+        return null
+    }
+
+    const calculaIMC = () => {
+        const alturaEmCm = parseInt(altura.replace(',', '.').trim())
+        const pesoEmKg = parseInt(peso.replace(',', '.').trim())
+
+        if (isNaN(alturaEmCm) || isNaN(pesoEmKg) || alturaEmCm <= 0 || pesoEmKg <= 0) {
+            return null
+        }
+
+        const alturaEmMetros = alturaEmCm / 100
+        const imc = pesoEmKg / (alturaEmMetros * alturaEmMetros)
+
+        if (imc >= 50) {
+            return `Erro! Coloque um valor em centímetros!`
+        } else {
+            return imc.toFixed(1)
+        }
+    }
+
+    const tabelaImc = [
+        { limite: 18.5, classificacao: `Você está abaixo do peso. Aqui, pegue um hot dog meu amigo!`, cor: styles.baixoPeso },
+        { limite: 24.9, classificacao: `Você está com peso normal, continue assim!`, cor: styles.pesoNormal },
+        { limite: 29.9, classificacao: `Você está com sobrepeso, vamos fazer alguns exercícios?`, cor: styles.sobrepeso },
+        { limite: 34.9, classificacao: `Você está com obesidade grau I.`, cor: styles.obesidadeI },
+        { limite: 39.9, classificacao: `Você está com obesidade grau II.`, cor: styles.obesidadeII },
+        { limite: Infinity, classificacao: `Você está com obesidade grau III.`, cor: styles.obesidadeIII },
+    ]
+
+    const erro = verificaCampos()
+    const imc = calculaIMC()
+
+    const getClassificacao = (imc) => {
+        return tabelaImc.find(({ limite }) => imc <= limite)
+    }
+
+    const classificacao = imc && !isNaN(imc) ? getClassificacao(imc) : null
+
+    return (
+        <>
+            {erro && <h2>{erro}</h2>}
+            {typeof imc === 'string' && imc.includes('Erro') ? (
+                <h2>{imc}</h2>
+            ) : (
+                imc && (
+                    <>
+                        <h2>Seu IMC é: {imc}</h2>
+                        {classificacao && (
+                            <p className={`${classificacao.cor} ${styles.classificacaoAtiva}`}>
+                                {classificacao.classificacao}
+                            </p>
+                        )}
+                        <h3>Tabela de Classificação de IMC:</h3>
+                        <ul>
+                            {tabelaImc.map(({ classificacao, cor, limite }) => (
+                                <li key={limite} className={cor}>
+                                    <p>
+                                        IMC {limite === Infinity ? `≥ 40` : `≤ ${limite}`}
+                                    </p>
+                                    <p>{classificacao}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )
+            )}
+        </>
+    )
+}
+
+export default IMCCalculado
